@@ -11,6 +11,7 @@ Release:	0.9
 Group:		Networking/Daemons
 License:	BSD-like
 Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
+# Source0-md5:	b03bb4e2fe58f6f3251a8aa168364221
 Source1:	%{name}.conf
 Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
