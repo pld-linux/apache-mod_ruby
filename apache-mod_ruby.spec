@@ -18,10 +18,10 @@ Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
 BuildRequires:	apache-devel >= 1.3.3
 BuildRequires:	%{apxs}
-BuildRequires:	ruby >= 1.6.4
+BuildRequires:	ruby >= 1:1.6.4
 Requires(post,preun):	%{apxs}
 Requires:	apache >= 1.3.3
-Requires:	ruby >= 1.6.4
+Requires:	ruby >= 1:1.6.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
