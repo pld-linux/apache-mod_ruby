@@ -1,0 +1,21 @@
+diff -urN mod_ruby.orig/connection.c mod_ruby-1.0.7/connection.c
+--- mod_ruby.orig/connection.c	Wed Mar 27 06:17:20 2002
++++ mod_ruby-1.0.7/connection.c	Wed Oct 22 22:25:36 2003
+@@ -100,7 +100,7 @@
+ #ifdef APACHE2
+     return INT2NUM(conn->local_addr->port);
+ #else
+-    return INT2NUM(ntohs(conn->local_addr.sin_port));
++    return INT2NUM(ntohs(conn->server->port));
+ #endif
+ }
+ 
+@@ -112,7 +112,7 @@
+ #ifdef APACHE2
+     return INT2NUM(conn->remote_addr->port);
+ #else
+-    return INT2NUM(ntohs(conn->remote_addr.sin_port));
++    return INT2NUM(ntohs(conn->server->port));
+ #endif
+ }
+ 
