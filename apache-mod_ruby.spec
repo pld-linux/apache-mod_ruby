@@ -31,7 +31,7 @@ start up much faster than without mod_ruby.
 
 %description -l pl
 mod_ruby zapewnia obs³ugê skryptów Ruby'ego bezpo¶rednio z poziomu
-Apache'a, dziêki czemu bêd± siê one ³adowa³y znacnie szybciej ni¿
+Apache'a, dziêki czemu bêd± siê one ³adowa³y znacznie szybciej ni¿
 gdyby by³y wywo³ywane tradycyjnie.
 
 %prep
