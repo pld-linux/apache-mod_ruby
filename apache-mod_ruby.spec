@@ -2,11 +2,13 @@
 %define 	apxs		/usr/sbin/apxs
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
 %define		_modrubyconf	%{_sysconfdir}/httpd/httpd.conf/70_mod_ruby.conf
+%define	ruby_archdir	%(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
+%define ruby_rubylibdir %(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
 Summary:	Apache mod_ruby module - embeds the Ruby interpreter into the Apache web server
 Summary(pl):	Modu³ Apache'a mod_ruby - zapewniaj±cy obs³ugê skryptów rubego przez serwer Apache
 Name:		apache-%{mod_name}
 Version:	1.2.0
-Release:	0.9
+Release:	1
 Group:		Networking/Daemons
 License:	BSD-like
 Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
@@ -45,12 +47,14 @@ gdyby by³y wywo³ywane tradycyjnie.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_pkglibdir}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{ruby_rubylibdir}}
 install %{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}/%{mod_name}.so
 
 # Install the config file
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/httpd/httpd.conf
 install %{SOURCE1} $RPM_BUILD_ROOT%{_modrubyconf}
+
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -73,3 +77,4 @@ fi
 %lang(ja) %doc README.ja
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/httpd.conf/70_mod_ruby.conf
 %attr(755,root,root) %{_pkglibdir}/*
+%{ruby_rubylibdir}/*
