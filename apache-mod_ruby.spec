@@ -12,8 +12,8 @@ Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
-BuildRequires:	apache-devel >= 1.3.3
 BuildRequires:	%{apxs}
+BuildRequires:	apache-devel >= 2.0
 BuildRequires:	ruby-devel >= 1:1.6.4
 Requires(post,preun):	%{apxs}
 Requires:	apache >= 1.3.3
@@ -75,6 +75,6 @@ fi
 %defattr(644,root,root,755)
 %doc COPYING ChangeLog README.en examples doc/*
 %lang(ja) %doc README.ja
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd.conf/*.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
 %attr(755,root,root) %{_pkglibdir}/*
 %{ruby_rubylibdir}/*
