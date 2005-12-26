@@ -1,3 +1,5 @@
+# TODO
+# - fix build with apache/apr (apr_off_t)
 %define		mod_name	mod_ruby
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache mod_ruby module - embeds the Ruby interpreter into the Apache web server
@@ -14,15 +16,14 @@ Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0
+BuildRequires:	rpmbuild(macros) >= 1.272
 BuildRequires:	ruby-devel >= 1:1.6.4
-Requires(post,preun):	%{apxs}
-Requires:	apache >= 1.3.3
+Requires:	apache(modules-api) = %apache_modules_api
 Requires:	ruby >= 1:1.6.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR)
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
-%define		ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
 
 %description
 mod_ruby embeds the Ruby interpreter into the Apache web server,
@@ -47,13 +48,9 @@ gdyby by³y wywo³ywane tradycyjnie.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{ruby_rubylibdir}}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf,%{ruby_rubylibdir}}
 install %{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}/%{mod_name}.so
-
-# Install the config file
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/70_mod_ruby.conf
-
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 
 %clean
@@ -75,6 +72,6 @@ fi
 %defattr(644,root,root,755)
 %doc COPYING ChangeLog README.en examples doc/*
 %lang(ja) %doc README.ja
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*
 %{ruby_rubylibdir}/*
