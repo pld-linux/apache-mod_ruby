@@ -7,8 +7,8 @@ Summary(pl):	Modu³ Apache'a mod_ruby - zapewniaj±cy obs³ugê skryptów rubego prze
 Name:		apache-%{mod_name}
 Version:	1.2.4
 Release:	1
-Group:		Networking/Daemons
 License:	BSD-like
+Group:		Networking/Daemons
 Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
 # Source0-md5:	2b803c021297517eecb3dc6cf77b9534
 Source1:	%{name}.conf
@@ -73,5 +73,5 @@ fi
 %doc COPYING ChangeLog README.en examples doc/*
 %lang(ja) %doc README.ja
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
-%attr(755,root,root) %{_pkglibdir}/*
+%attr(755,root,root) %{_pkglibdir}/*.so
 %{ruby_rubylibdir}/*
