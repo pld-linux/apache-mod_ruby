@@ -16,10 +16,11 @@ Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0
-BuildRequires:	rpmbuild(macros) >= 1.272
+BuildRequires:	rpmbuild(macros) >= 1.277
 BuildRequires:	ruby-devel >= 1:1.6.4
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	ruby >= 1:1.6.4
+%ruby_mod_ver_requires_eq
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
