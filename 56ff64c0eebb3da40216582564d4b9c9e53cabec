@@ -1,0 +1,3 @@
+- change %ruby_mod_ver_requires_eq to %{?ruby_mod_ver_requires_eq} -
+  expand this macro only if defined to avoid parse error when appropriate
+  BRs is not installed yet (solution provided by glen)
