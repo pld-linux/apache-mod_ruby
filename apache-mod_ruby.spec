@@ -16,7 +16,7 @@ Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0
-BuildRequires:	rpmbuild(macros) >= 1.277
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	ruby-devel >= 1:1.6.4
 Requires:	apache(modules-api) = %apache_modules_api
 Requires:	ruby >= 1:1.6.4
@@ -58,15 +58,11 @@ cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd restart 1>&2
-fi
+%service -q httpd restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/httpd ]; then
-		/etc/rc.d/init.d/httpd restart 1>&2
-	fi
+	%service -q httpd restart
 fi
 
 %files
