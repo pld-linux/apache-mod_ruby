@@ -8,7 +8,7 @@ Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
 Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
-# Source0-md5:	2b803c021297517eecb3dc6cf77b9534
+# Source0-md5:	3c867008bd6518c1fec395d9040cd964
 Source1:	%{name}.conf
 Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
