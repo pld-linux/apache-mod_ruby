@@ -1,11 +1,9 @@
-# TODO
-# - fix build with apache/apr (apr_off_t)
 %define		mod_name	mod_ruby
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache mod_ruby module - embeds the Ruby interpreter into the Apache web server
 Summary(pl):	Modu³ Apache'a mod_ruby - zapewniaj±cy obs³ugê skryptów rubego przez serwer Apache
 Name:		apache-%{mod_name}
-Version:	1.2.4
+Version:	1.2.5
 Release:	1
 License:	BSD-like
 Group:		Networking/Daemons
@@ -51,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf,%{ruby_rubylibdir}}
 install %{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}/%{mod_name}.so
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/70_mod_ruby.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/70_mod_%{mod_name}.conf
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 
 %clean
