@@ -1,7 +1,7 @@
 %define		mod_name	mod_ruby
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache mod_ruby module - embeds the Ruby interpreter into the Apache web server
-Summary(pl.UTF-8):   Moduł Apache'a mod_ruby - zapewniający obsługę skryptów rubego przez serwer Apache
+Summary(pl.UTF-8):	Moduł Apache'a mod_ruby - zapewniający obsługę skryptów rubego przez serwer Apache
 Name:		apache-%{mod_name}
 Version:	1.2.5
 Release:	1
