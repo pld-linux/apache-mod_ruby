@@ -12,7 +12,7 @@ Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
-BuildRequires:	%{apxs}
+BuildRequires:	apache-apxs >= 2.0
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	ruby-devel >= 1:1.6.4
