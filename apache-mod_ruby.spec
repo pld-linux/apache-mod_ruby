@@ -6,7 +6,7 @@ Name:		apache-%{mod_name}
 Version:	1.2.5
 Release:	1
 License:	BSD-like
-Group:		Networking/Daemons
+Group:		Networking/Daemons/HTTP
 Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
 # Source0-md5:	3c867008bd6518c1fec395d9040cd964
 Source1:	%{name}.conf
