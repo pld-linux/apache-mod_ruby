@@ -3,12 +3,12 @@
 Summary:	Apache mod_ruby module - embeds the Ruby interpreter into the Apache web server
 Summary(pl.UTF-8):	Moduł Apache'a mod_ruby - zapewniający obsługę skryptów rubego przez serwer Apache
 Name:		apache-%{mod_name}
-Version:	1.2.5
+Version:	1.3.0
 Release:	1
 License:	BSD-like
 Group:		Networking/Daemons/HTTP
 Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
-# Source0-md5:	3c867008bd6518c1fec395d9040cd964
+# Source0-md5:	5aae358c3c9f1bfa2554da9242289ab7
 Source1:	%{name}.conf
 Patch0:		%{name}-struct.patch
 URL:		http://www.modruby.net/
