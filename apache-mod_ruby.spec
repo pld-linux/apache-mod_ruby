@@ -1,10 +1,12 @@
+# TODO:
+#	- make it work with ruby 1.9, currently any request -> Sig11
 %define		mod_name	mod_ruby
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache mod_ruby module - embeds the Ruby interpreter into the Apache web server
 Summary(pl.UTF-8):	Moduł Apache'a mod_ruby - zapewniający obsługę skryptów rubego przez serwer Apache
 Name:		apache-%{mod_name}
 Version:	1.3.0
-Release:	1
+Release:	1.1
 License:	BSD-like
 Group:		Networking/Daemons/HTTP
 Source0:	http://www.modruby.net/archive/%{mod_name}-%{version}.tar.gz
