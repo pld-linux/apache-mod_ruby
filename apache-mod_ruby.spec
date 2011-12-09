@@ -24,7 +24,7 @@ Requires:	ruby >= 1:1.6.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
-%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
 
 %description
 mod_ruby embeds the Ruby interpreter into the Apache web server,
@@ -48,10 +48,9 @@ gdyby były wywoływane tradycyjnie.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf,%{ruby_rubylibdir}}
-install %{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}/%{mod_name}.so
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/70_mod_%{mod_name}.conf
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir},%{ruby_rubylibdir}}
+install -p %{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}/%{mod_name}.so
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/70_mod_%{mod_name}.conf
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 
 %clean
@@ -69,6 +68,6 @@ fi
 %defattr(644,root,root,755)
 %doc COPYING ChangeLog README.en examples doc/*
 %lang(ja) %doc README.ja
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
 %{ruby_rubylibdir}/*
